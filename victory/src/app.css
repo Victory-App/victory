@@ -1,0 +1,63 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+:root {
+    --primary-bg: #101014;
+    --secondary-bg: #080812;
+
+    --primary-button: #141418;
+    --primary-button-hover: #202024;
+    --primary-border: #404040;
+}
+
+.font-lato {
+    font-family: "Lato", sans-serif;
+}
+
+* {
+    color: white;
+    border-color: var(--primary-border);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+}
+
+a {
+    color: #00aafc;
+}
+
+main {
+    outline: 1px solid var(--primary-border);
+    width: 100%;
+    min-height: 100vh;
+    align-self: center;
+    max-width: 600px;
+}
+
+header, nav {
+    max-width: 600px;
+}
+
+
+textarea {
+    resize: none;
+}
+
+html, body, textarea {
+    background-color: var(--primary-bg);
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+img {
+    object-fit: cover;
+}
+

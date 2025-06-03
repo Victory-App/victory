@@ -1,0 +1,53 @@
+services:
+
+  cloudflared:
+    image: "cloudflare/cloudflared:latest"
+    restart: unless-stopped
+    command:
+      - tunnel
+      - run
+      - --token
+      - TOKEN
+    depends_on:
+      - nginx
+    networks:
+      - common
+
+  nginx:
+    image: nginx:latest
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - common
+
+  victory:
+    image: localhost:5000/victory/client:latest
+    restart: unless-stopped
+    networks:
+      - common
+
+  api:
+    image: localhost:5000/victory/server:latest
+    restart: unless-stopped
+    volumes:
+      - ./fiber.log:/fiber.log
+    networks:
+      - common
+    environment:
+      - MAILGUN_API_KEY
+      - DB_HOST=scylla
+
+#  gun-service:
+#    build:
+#      context: ./relay
+#      dockerfile: ./Dockerfile
+#    restart: always
+#    volumes:
+#      - ./radata:/usr/src/app/radata
+#    networks:
+#      - common
+
+networks:
+  common:
+
