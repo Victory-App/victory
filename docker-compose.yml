@@ -27,26 +27,26 @@ services:
     networks:
       - common
 
-  api:
-    image: localhost:5000/victory/server:latest
-    restart: unless-stopped
-    volumes:
-      - ./fiber.log:/fiber.log
-    networks:
-      - common
-    environment:
-      - MAILGUN_API_KEY
-      - DB_HOST=scylla
-
-#  gun-service:
-#    build:
-#      context: ./relay
-#      dockerfile: ./Dockerfile
-#    restart: always
+#  api:
+#    image: localhost:5000/victory/server:latest
+#    restart: unless-stopped
 #    volumes:
-#      - ./radata:/usr/src/app/radata
+#      - ./fiber.log:/fiber.log
 #    networks:
 #      - common
+#    environment:
+#      - MAILGUN_API_KEY
+#      - DB_HOST=scylla
+
+  gun-service:
+    build:
+      context: ./relay
+      dockerfile: ./Dockerfile
+    restart: always
+    volumes:
+      - ./radata:/usr/src/app/radata
+    networks:
+      - common
 
 networks:
   common:
